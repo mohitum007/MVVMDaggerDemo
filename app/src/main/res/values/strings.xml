@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">SpiceAssessment</string>
 
+    <string name="loading_text">Loading, please wait…</string>
     <string name="network_error">No network connection.</string>
     <string name="errorString">Something went wrong, Please try again.</string>
+    <string name="home_info_text">Product Catalogue</string>
+    <string name="search_error_no_text">No Data Available</string>
+
+    <string name="data_by_category">By Category</string>
+    <string name="data_by_rank">By Rank</string>
 </resources>
