@@ -5,6 +5,8 @@
 1. Fetching data from server https://stark-spire-93433.herokuapp.com/json
 2. Parsing using retrofit and showing in Recycler View.
 3. This Demo uses MVVM architecture with Dagger, Rxjava and Live Data
+4. Downloading data from url in JSON using retrofit and RxJava.
+5. Sorting the product list data is particular order and displaying in recycler view.
 
 
 ## How to run / build / test project
