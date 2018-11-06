@@ -1,14 +1,14 @@
 
 package com.mohitum.spiceassessment.model;
 
-import java.util.List;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Product implements Parcelable
+import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+
+public class Product implements Serializable
 {
 
     @SerializedName("id")
@@ -26,37 +26,15 @@ public class Product implements Parcelable
     @SerializedName("tax")
     @Expose
     private Tax tax;
-    public final static Creator<Product> CREATOR = new Creator<Product>() {
-
-
-        @SuppressWarnings({
-            "unchecked"
-        })
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
-        }
-
-        public Product[] newArray(int size) {
-            return (new Product[size]);
-        }
-
-    }
-    ;
-
-    protected Product(Parcel in) {
-        this.id = ((int) in.readValue((int.class.getClassLoader())));
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
-        this.dateAdded = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.variants, (com.mohitum.spiceassessment.model.Variant.class.getClassLoader()));
-        this.tax = ((Tax) in.readValue((Tax.class.getClassLoader())));
-    }
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Product() {
-    }
+    @SerializedName("view_count")
+    @Expose
+    private int viewCount;
+    @SerializedName("order_count")
+    @Expose
+    private int orderCount;
+    @SerializedName("shares")
+    @Expose
+    private int shares;
 
     /**
      * 
@@ -65,14 +43,20 @@ public class Product implements Parcelable
      * @param name
      * @param variants
      * @param dateAdded
+     * @param shares
+     * @param orderCount
+     * @param viewCount
      */
-    public Product(int id, String name, String dateAdded, List<Variant> variants, Tax tax) {
+    public Product(int id, String name, String dateAdded, List<Variant> variants, Tax tax, int viewCount, int orderCount, int shares) {
         super();
         this.id = id;
         this.name = name;
         this.dateAdded = dateAdded;
         this.variants = variants;
         this.tax = tax;
+        this.viewCount = viewCount;
+        this.orderCount = orderCount;
+        this.shares = shares;
     }
 
     public int getId() {
@@ -115,16 +99,40 @@ public class Product implements Parcelable
         this.tax = tax;
     }
 
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
-        dest.writeValue(name);
-        dest.writeValue(dateAdded);
-        dest.writeList(variants);
-        dest.writeValue(tax);
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public int describeContents() {
-        return  0;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
+    public int getOrderCount() {
+        return orderCount;
+    }
+
+    public void setOrderCount(int orderCount) {
+        this.orderCount = orderCount;
+    }
+
+    public int getShares() {
+        return shares;
+    }
+
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product that = (Product) o;
+        return Objects.equals(this.getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getId());
+    }
 }

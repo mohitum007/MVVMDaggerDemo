@@ -1,6 +1,7 @@
-package com.mohitum.spiceassessment.view;
+package com.mohitum.spiceassessment.adapters;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 
 import com.mohitum.spiceassessment.R;
 import com.mohitum.spiceassessment.model.Category;
+import com.mohitum.spiceassessment.view.ProductsActivity;
 
 import java.util.List;
+
+import static com.mohitum.spiceassessment.utils.Constants.INTENT_DATA;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
 
@@ -25,21 +29,24 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
      */
     private LayoutInflater inflater;
 
+    private Activity activity;
+
     /**
      * Adapter constructor
      *
-     * @param context calling context
+     * @param activity calling activity context
      * @param categories categories list data
      */
-    CategoriesAdapter(Context context, List<Category> categories) {
-        inflater = LayoutInflater.from(context);
+    public CategoriesAdapter(Activity activity, List<Category> categories) {
+        inflater = LayoutInflater.from(activity);
+        this.activity = activity;
         this.categories = categories;
     }
 
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.row_item_category, parent, false);
+        View view = inflater.inflate(R.layout.row_item_base, parent, false);
         return new CategoryViewHolder(view);
     }
 
@@ -62,16 +69,24 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
      * This class will be used as a view holder representing single view for the adapter
      *
      */
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+    class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Category category;
         /**
-         * Feed View holder constructor
+         * View holder constructor
          *
          * @param itemView item layout view
          */
         private CategoryViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(activity, ProductsActivity.class);
+            intent.putExtra(INTENT_DATA, category);
+            activity.startActivity(intent);
         }
     }
 }

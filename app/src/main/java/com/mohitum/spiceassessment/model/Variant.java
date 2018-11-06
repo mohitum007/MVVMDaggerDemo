@@ -1,13 +1,12 @@
 
 package com.mohitum.spiceassessment.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Variant implements Parcelable
+import java.io.Serializable;
+
+public class Variant implements Serializable
 {
 
     @SerializedName("id")
@@ -22,36 +21,6 @@ public class Variant implements Parcelable
     @SerializedName("price")
     @Expose
     private double price;
-    public final static Creator<Variant> CREATOR = new Creator<Variant>() {
-
-
-        @SuppressWarnings({
-            "unchecked"
-        })
-        public Variant createFromParcel(Parcel in) {
-            return new Variant(in);
-        }
-
-        public Variant[] newArray(int size) {
-            return (new Variant[size]);
-        }
-
-    }
-    ;
-
-    protected Variant(Parcel in) {
-        this.id = ((int) in.readValue((int.class.getClassLoader())));
-        this.color = ((String) in.readValue((String.class.getClassLoader())));
-        this.size = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.price = ((double) in.readValue((int.class.getClassLoader())));
-    }
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Variant() {
-    }
 
     /**
      * 
@@ -98,17 +67,6 @@ public class Variant implements Parcelable
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
-        dest.writeValue(color);
-        dest.writeValue(size);
-        dest.writeValue(price);
-    }
-
-    public int describeContents() {
-        return  0;
     }
 
 }

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.HomeActivity" />
+        <activity android:name=".view.ProductsActivity" />
     </application>
 
 </manifest>

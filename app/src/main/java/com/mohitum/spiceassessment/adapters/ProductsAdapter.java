@@ -9,17 +9,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mohitum.spiceassessment.R;
-import com.mohitum.spiceassessment.model.Category;
-import com.mohitum.spiceassessment.model.Ranking;
+import com.mohitum.spiceassessment.model.Product;
 
 import java.util.List;
 
-public class RankingsAdapter extends RecyclerView.Adapter<RankingsAdapter.RankingViewHolder> {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.mohitum.spiceassessment.dagger.Repository.getFullProduct;
+
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
 
     /**
      * List of adapter data
      */
-    private List<Ranking> rankings;
+    private List<Product> products;
 
     /**
      * Layout Inflater instance to inflate adapter views
@@ -30,49 +34,60 @@ public class RankingsAdapter extends RecyclerView.Adapter<RankingsAdapter.Rankin
      * Adapter constructor
      *
      * @param context calling context
-     * @param rankings rankings list data
+     * @param products products list data
      */
-    public RankingsAdapter(Context context, List<Ranking> rankings) {
+    public ProductsAdapter(Context context, List<Product> products) {
         inflater = LayoutInflater.from(context);
-        this.rankings = rankings;
+        this.products = products;
     }
 
     @NonNull
     @Override
-    public RankingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.row_item_category, parent, false);
-        return new RankingViewHolder(view);
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.row_item_product, parent, false);
+        return new ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RankingViewHolder holder, int position) {
-        Ranking ranking = rankings.get(position);
-        holder.ranking = ranking;
-        String name = ranking.getRanking();
-        if(name != null) {
-            ((TextView)holder.itemView).setText(name);
-        }
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Product product = getFullProduct(products.get(position));
+        holder.product = product;
+        holder.txtName.setText(product.getName());
+        holder.txtViewCount.setText(product.getViewCount() + " Views");
+        holder.txtOrderCount.setText(product.getOrderCount() + " Orders");
+        holder.txtShares.setText(product.getShares() + " Shares");
+        holder.txtDateAdded.setText(product.getDateAdded());
     }
 
     @Override
     public int getItemCount() {
-        return rankings.size();
+        return products.size();
     }
 
     /**
      * This class will be used as a view holder representing single view for the adapter
      *
      */
-    class RankingViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        Ranking ranking;
+        Product product;
+
+        /**
+         * UI references.
+         */
+        @BindView(R.id.txt_name) TextView txtName;
+        @BindView(R.id.txt_view_count) TextView txtViewCount;
+        @BindView(R.id.txt_order_count) TextView txtOrderCount;
+        @BindView(R.id.txt_shares) TextView txtShares;
+        @BindView(R.id.txt_date_added) TextView txtDateAdded;
         /**
          * View holder constructor
          *
          * @param itemView item layout view
          */
-        private RankingViewHolder(View itemView) {
+        private ProductViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

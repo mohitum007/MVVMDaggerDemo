@@ -14,7 +14,7 @@
     <RelativeLayout
         style="@style/MatchLayout"
         android:layout_below="@+id/txt_info_label"
-        android:layout_above="@+id/bottom_layout">
+        android:layout_above="@+id/show_rank_wise_switch">
 
         <LinearLayout
             android:id="@+id/progress_layout"
@@ -50,24 +50,11 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/bottom_layout"
-        style="@style/SectionLayout"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-
-        <Button
-            android:id="@+id/show_category_wise"
-            style="@style/Button"
-            android:layout_weight=".5"
-            android:text="@string/data_by_category"
-            android:gravity="center"/>
-
-        <Button
-            android:id="@+id/show_rank_wise"
-            style="@style/Button"
-            android:layout_weight=".5"
-            android:text="@string/data_by_rank"
-            android:gravity="center"/>
-    </LinearLayout>
+    <Switch
+        android:id="@+id/show_rank_wise_switch"
+        style="@style/SectionPadded"
+        android:text="@string/data_by_rank"
+        android:enabled="false"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"/>
 </RelativeLayout>

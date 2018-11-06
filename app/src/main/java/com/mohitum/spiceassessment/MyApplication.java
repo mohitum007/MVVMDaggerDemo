@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.mohitum.spiceassessment.dagger.AppComponent;
-import com.mohitum.spiceassessment.dagger.DaggerAppComponent;
 import com.mohitum.spiceassessment.dagger.AppModule;
+import com.mohitum.spiceassessment.dagger.DaggerAppComponent;
 import com.mohitum.spiceassessment.dagger.UtilsModule;
 
 public class MyApplication extends Application {

@@ -4,14 +4,19 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mohitum.spiceassessment.MyApplication;
 import com.mohitum.spiceassessment.R;
+import com.mohitum.spiceassessment.adapters.CategoriesAdapter;
+import com.mohitum.spiceassessment.adapters.RankingsAdapter;
+import com.mohitum.spiceassessment.dagger.Repository;
 import com.mohitum.spiceassessment.dagger.ViewModelFactory;
 import com.mohitum.spiceassessment.network.ApiResponse;
 import com.mohitum.spiceassessment.network.Status;
@@ -21,7 +26,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import butterknife.OnCheckedChanged;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,7 +42,12 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.error_label)
     TextView errorLabel;
 
+    @BindView(R.id.show_rank_wise_switch)
+    Switch showRankWiseSwitch;
+
     HomeViewModel viewModel;
+
+    private ApiResponse jsonResponse;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ((MyApplication) getApplication()).getAppComponent().doInjection(this);
 
@@ -63,20 +75,24 @@ public class HomeActivity extends AppCompatActivity {
         viewModel.hitFetchJsonApi();
     }
 
-    @OnClick(R.id.show_category_wise)
-    public void sortByCategory() {
-
-    }
-
-    @OnClick(R.id.show_rank_wise)
-    public void sortByRank() {
-
+    @OnCheckedChanged (R.id.show_rank_wise_switch)
+    public void showRankWise() {
+        if (showRankWiseSwitch.isChecked()) {
+            RankingsAdapter rankingsAdapter = new RankingsAdapter(this, jsonResponse.data.getRankings());
+            recyclerView.setAdapter(rankingsAdapter);
+        } else {
+            CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, jsonResponse.data.getCategories());
+            recyclerView.setAdapter(categoriesAdapter);
+        }
     }
 
     private void consumeResponse(ApiResponse apiResponse) {
         if(apiResponse != null && handleApiState(apiResponse.status)) {
-            Toast.makeText(HomeActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-
+            this.jsonResponse = apiResponse;
+            showRankWiseSwitch.setEnabled(true);
+            Repository.PRODUCTS = viewModel.getfinalProductList(apiResponse.data.getCategories(), apiResponse.data.getRankings());
+            CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, apiResponse.data.getCategories());
+            recyclerView.setAdapter(categoriesAdapter);
         }
     }
 

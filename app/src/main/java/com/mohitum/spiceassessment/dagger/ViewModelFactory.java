@@ -17,7 +17,6 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         this.repository = repository;
     }
 
-
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

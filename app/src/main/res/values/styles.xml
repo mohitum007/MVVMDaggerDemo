@@ -24,7 +24,7 @@
     </style>
 
     <style name="SectionPadded" parent="SectionLayout">
-        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:padding">@dimen/default_margin</item>
     </style>
 
     <style name="RootLayout" parent="MatchLayout">

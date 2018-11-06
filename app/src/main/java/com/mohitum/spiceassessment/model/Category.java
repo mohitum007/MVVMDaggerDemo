@@ -1,14 +1,13 @@
 
 package com.mohitum.spiceassessment.model;
 
-import java.util.List;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Category implements Parcelable
+import java.io.Serializable;
+import java.util.List;
+
+public class Category implements Serializable
 {
 
     @SerializedName("id")
@@ -23,36 +22,6 @@ public class Category implements Parcelable
     @SerializedName("child_categories")
     @Expose
     private List<Integer> childCategories = null;
-    public final static Creator<Category> CREATOR = new Creator<Category>() {
-
-
-        @SuppressWarnings({
-            "unchecked"
-        })
-        public Category createFromParcel(Parcel in) {
-            return new Category(in);
-        }
-
-        public Category[] newArray(int size) {
-            return (new Category[size]);
-        }
-
-    }
-    ;
-
-    protected Category(Parcel in) {
-        this.id = ((int) in.readValue((int.class.getClassLoader())));
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.products, (Product.class.getClassLoader()));
-        in.readList(this.childCategories, (Integer.class.getClassLoader()));
-    }
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Category() {
-    }
 
     /**
      * 
@@ -100,16 +69,4 @@ public class Category implements Parcelable
     public void setChildCategories(List<Integer> childCategories) {
         this.childCategories = childCategories;
     }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
-        dest.writeValue(name);
-        dest.writeList(products);
-        dest.writeList(childCategories);
-    }
-
-    public int describeContents() {
-        return  0;
-    }
-
 }
