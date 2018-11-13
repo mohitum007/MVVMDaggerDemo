@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -6,8 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Tax implements Serializable
-{
+public class Tax implements Serializable {
 
     @SerializedName("name")
     @Expose
@@ -17,7 +15,6 @@ public class Tax implements Serializable
     private double value;
 
     /**
-     * 
      * @param name
      * @param value
      */
@@ -43,4 +40,11 @@ public class Tax implements Serializable
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Tax{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

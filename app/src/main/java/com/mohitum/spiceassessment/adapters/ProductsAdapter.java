@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.mohitum.spiceassessment.R;
 import com.mohitum.spiceassessment.model.Product;
+import com.mohitum.spiceassessment.model.Variant;
+import com.mohitum.spiceassessment.utils.Utilities;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     /**
      * Adapter constructor
      *
-     * @param context calling context
+     * @param context  calling context
      * @param products products list data
      */
     public ProductsAdapter(Context context, List<Product> products) {
@@ -66,20 +68,25 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     /**
      * This class will be used as a view holder representing single view for the adapter
-     *
      */
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Product product;
 
         /**
          * UI references.
          */
-        @BindView(R.id.txt_name) TextView txtName;
-        @BindView(R.id.txt_view_count) TextView txtViewCount;
-        @BindView(R.id.txt_order_count) TextView txtOrderCount;
-        @BindView(R.id.txt_shares) TextView txtShares;
-        @BindView(R.id.txt_date_added) TextView txtDateAdded;
+        @BindView(R.id.txt_name)
+        TextView txtName;
+        @BindView(R.id.txt_view_count)
+        TextView txtViewCount;
+        @BindView(R.id.txt_order_count)
+        TextView txtOrderCount;
+        @BindView(R.id.txt_shares)
+        TextView txtShares;
+        @BindView(R.id.txt_date_added)
+        TextView txtDateAdded;
+
         /**
          * View holder constructor
          *
@@ -88,6 +95,25 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         private ProductViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            String title = "Product: " + product.getName();
+            StringBuilder messageBuilder = new StringBuilder();
+            if (!product.getVariants().isEmpty()) {
+                messageBuilder.append("Available Variants:\n");
+                for (Variant variant : product.getVariants()) {
+                    messageBuilder.append("* ").append(variant.toString()).append("\n");
+                }
+                messageBuilder.append("\n");
+            }
+            if (product.getTax() != null) {
+                messageBuilder.append("Tax Info:\n");
+                messageBuilder.append("* ").append(product.getTax().toString()).append("\n");
+            }
+            Utilities.showAlertMessage(v.getContext(), title, messageBuilder.toString());
         }
     }
 }

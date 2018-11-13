@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -6,8 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Variant implements Serializable
-{
+public class Variant implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -23,7 +21,6 @@ public class Variant implements Serializable
     private double price;
 
     /**
-     * 
      * @param id
      * @param price
      * @param color
@@ -69,4 +66,13 @@ public class Variant implements Serializable
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Variant{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", size=" + size +
+                ", price=" + price +
+                '}';
+    }
 }

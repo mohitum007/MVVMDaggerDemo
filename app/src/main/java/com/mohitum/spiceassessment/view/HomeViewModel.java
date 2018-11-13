@@ -43,13 +43,13 @@ public class HomeViewModel extends ViewModel {
 
     public List<Product> getfinalProductList(List<Category> categories, List<Ranking> rankings) {
         List<Product> finalProducts = new ArrayList<>();
-        for (Category category: categories) {
+        for (Category category : categories) {
             List<Product> productList = category.getProducts();
             finalProducts.addAll(productList);
         }
-        for (Ranking ranking: rankings) {
-            for (Product product: ranking.getProducts()) {
-                if(finalProducts.contains(product)) {
+        for (Ranking ranking : rankings) {
+            for (Product product : ranking.getProducts()) {
+                if (finalProducts.contains(product)) {
                     Product finalProduct = finalProducts.get(finalProducts.indexOf(product));
                     finalProduct.setOrderCount(product.getOrderCount());
                     finalProduct.setViewCount(product.getViewCount());
@@ -59,7 +59,6 @@ public class HomeViewModel extends ViewModel {
         }
         return finalProducts;
     }
-
 
 
     @Override

@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -8,8 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class Product implements Serializable
-{
+public class Product implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -37,7 +35,6 @@ public class Product implements Serializable
     private int shares;
 
     /**
-     * 
      * @param id
      * @param tax
      * @param name

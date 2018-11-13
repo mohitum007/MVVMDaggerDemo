@@ -3,6 +3,7 @@ package com.mohitum.spiceassessment.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 
 public class Utilities {
 
@@ -23,4 +24,13 @@ public class Utilities {
         }
         return false;
     }
+
+    public static void showAlertMessage(Context context, String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+        builder.create().show();
+    }
+
 }

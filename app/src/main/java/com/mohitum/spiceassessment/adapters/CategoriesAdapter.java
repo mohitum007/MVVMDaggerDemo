@@ -34,7 +34,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     /**
      * Adapter constructor
      *
-     * @param activity calling activity context
+     * @param activity   calling activity context
      * @param categories categories list data
      */
     public CategoriesAdapter(Activity activity, List<Category> categories) {
@@ -55,8 +55,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         Category category = categories.get(position);
         holder.category = category;
         String name = category.getName();
-        if(name != null) {
-            ((TextView)holder.itemView).setText(name);
+        if (name != null) {
+            ((TextView) holder.itemView).setText(name);
         }
     }
 
@@ -67,11 +67,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     /**
      * This class will be used as a view holder representing single view for the adapter
-     *
      */
     class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Category category;
+
         /**
          * View holder constructor
          *

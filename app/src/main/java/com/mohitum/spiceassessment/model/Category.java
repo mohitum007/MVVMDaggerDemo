@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -7,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class Category implements Serializable
-{
+public class Category implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -24,7 +22,6 @@ public class Category implements Serializable
     private List<Integer> childCategories = null;
 
     /**
-     * 
      * @param childCategories
      * @param id
      * @param name

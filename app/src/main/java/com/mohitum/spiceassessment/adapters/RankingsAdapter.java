@@ -55,8 +55,8 @@ public class RankingsAdapter extends RecyclerView.Adapter<RankingsAdapter.Rankin
         Ranking ranking = rankings.get(position);
         holder.ranking = ranking;
         String name = ranking.getRanking();
-        if(name != null) {
-            ((TextView)holder.itemView).setText(name);
+        if (name != null) {
+            ((TextView) holder.itemView).setText(name);
         }
     }
 
@@ -67,11 +67,11 @@ public class RankingsAdapter extends RecyclerView.Adapter<RankingsAdapter.Rankin
 
     /**
      * This class will be used as a view holder representing single view for the adapter
-     *
      */
     class RankingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Ranking ranking;
+
         /**
          * View holder constructor
          *

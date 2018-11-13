@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/SectionLayout"
-    android:background="@color/grey"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:layout_margin="1dp"
     tools:context=".view.HomeActivity">
@@ -11,10 +10,14 @@
     <TextView
         android:id="@+id/txt_name"
         style="@style/Label"
-        tools:text="Product name"/>
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        tools:text="Product name" />
 
     <LinearLayout
-        style="@style/SectionPadded"
+        style="@style/SectionLayout"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
         android:orientation="horizontal">
 
         <TextView
@@ -22,21 +25,24 @@
             style="@style/WrapLayout"
             android:layout_weight=".3"
             android:textSize="@dimen/subtitle_text_size"
-            tools:text="2 Views"/>
+            android:textColor="@color/white"
+            tools:text="2 Views" />
 
         <TextView
             android:id="@+id/txt_order_count"
             style="@style/WrapLayout"
             android:layout_weight=".3"
             android:textSize="@dimen/subtitle_text_size"
-            tools:text="2 Orders"/>
+            android:textColor="@color/white"
+            tools:text="2 Orders" />
 
         <TextView
             android:id="@+id/txt_shares"
             style="@style/WrapLayout"
             android:layout_weight=".3"
             android:textSize="@dimen/subtitle_text_size"
-            tools:text="2 Shares"/>
+            android:textColor="@color/white"
+            tools:text="2 Shares" />
 
     </LinearLayout>
 
@@ -44,5 +50,13 @@
         android:id="@+id/txt_date_added"
         style="@style/Label"
         android:textSize="@dimen/subtitle_text_size"
-        tools:text="Date added"/>
+        tools:text="Date added" />
+
+    <TextView
+        android:id="@+id/txt_detail_info"
+        style="@style/SectionLayout"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/subtitle_text_size"
+        android:textColor="@color/white"
+        android:text="@string/detail_info" />
 </LinearLayout>

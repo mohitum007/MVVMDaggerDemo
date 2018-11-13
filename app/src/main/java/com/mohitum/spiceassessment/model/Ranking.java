@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -7,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class Ranking implements Serializable
-{
+public class Ranking implements Serializable {
 
     @SerializedName("ranking")
     @Expose
@@ -18,7 +16,6 @@ public class Ranking implements Serializable
     private List<Product> products = null;
 
     /**
-     * 
      * @param products
      * @param ranking
      */

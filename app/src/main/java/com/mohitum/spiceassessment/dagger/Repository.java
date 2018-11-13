@@ -27,7 +27,7 @@ public class Repository {
     }
 
     public static Product getFullProduct(Product product) {
-        for (Product p: PRODUCTS) {
+        for (Product p : PRODUCTS) {
             if (p.getId() == product.getId()) {
                 return p;
             }

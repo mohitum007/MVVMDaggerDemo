@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         if (Utilities.checkInternetConnection(this)) {
             prepareAndFetch();
         } else {
-            Toast.makeText(HomeActivity.this,getResources().getString(R.string.errorString), Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, getResources().getString(R.string.errorString), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         viewModel.hitFetchJsonApi();
     }
 
-    @OnCheckedChanged (R.id.show_rank_wise_switch)
+    @OnCheckedChanged(R.id.show_rank_wise_switch)
     public void showRankWise() {
         if (showRankWiseSwitch.isChecked()) {
             RankingsAdapter rankingsAdapter = new RankingsAdapter(this, jsonResponse.data.getRankings());
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void consumeResponse(ApiResponse apiResponse) {
-        if(apiResponse != null && handleApiState(apiResponse.status)) {
+        if (apiResponse != null && handleApiState(apiResponse.status)) {
             this.jsonResponse = apiResponse;
             showRankWiseSwitch.setEnabled(true);
             Repository.PRODUCTS = viewModel.getfinalProductList(apiResponse.data.getCategories(), apiResponse.data.getRankings());

@@ -1,4 +1,3 @@
-
 package com.mohitum.spiceassessment.model;
 
 import com.google.gson.annotations.Expose;
@@ -7,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class JsonWrapper implements Serializable
-{
+public class JsonWrapper implements Serializable {
 
     @SerializedName("categories")
     @Expose
@@ -18,7 +16,6 @@ public class JsonWrapper implements Serializable
     private List<Ranking> rankings = null;
 
     /**
-     * 
      * @param rankings
      * @param categories
      */
